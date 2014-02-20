@@ -5,7 +5,24 @@ input:focus,textarea:focus,select:focus{
  box-shadow:0 0 5px #007eff;
 }
 
-body {background-image:url('img/ricepaper.jpg');
+body {
+	background-image:url('img/ricepaper.jpg');
 }
+
+.back {
+	margin:auto;
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	width: 900px;
+	height: 600px;
+	background-attatchment: fixed;
+	background-color: #D2B48C;
+	border-radius: 20px;
+
+}
+
+
 
 font: Helvetica Nue

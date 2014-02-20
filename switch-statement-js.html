@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Switch Statement for JS</title>
+</head>
+<body>
+
+<p>
+<script>
+var colors = ['red', 'orange', 'yellow', 'green', 'aquamarine', 'ice', 'blue', 'indigo', 'violet']
+var color = colors[Math.floor(Math.random()*colors.length)];
+
+var favorite = 'ice';
+
+var message;
+
+switch (color) {
+	case favorite:
+		message = "Ice is the color of the Athabasca Glacier,";
+		break;
+	case "red":
+		message = "Red is the color of the burning sky.";
+		break;
+	case "orange":
+		message = "Orange is the color of Curry Chicken.";
+		break;
+	case "yellow":
+		message = "Yellow is the color of Los Angeles grass.";
+		break;
+	case "green":
+		message = "Green is the color of phosforescent algae.";
+		break;
+	case "aquamarine":
+		message = "Aquamarine is the color of your eyes.";
+		break;
+	case "blue":
+		message = "Blue is the color of Neptune in spring.";
+		break;
+	default:
+		message = "I don't know anything about " + color + ".";
+	}
+
+var addendum = (color == favorite) ? " and this is my favorite color." : " *drops mic*";
+
+console.log(message + addendum);
+document.write(message + addendum);
+
+</script>
+</body>
+
+</html>
+
+
