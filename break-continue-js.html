@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Break Continue for JS</title>
+</head>
+<body>
+	<script>
+
+// don't worry about the details of this line
+// just know that it genrates a random number between 1 and 100
+var randomNumber = Math.floor((Math.random()*50)+1);
+
+while (randomNumber % 2 === 0) {
+	randomNumber = Math.floor((Math.random()*50)+1);
+}
+console.log(randomNumber);
+document.write(randomNumber);
+for (var i = 1; i < 50; i++) {
+
+	if (i == randomNumber) {
+		console.log('REDACTED LINE');
+		continue;
+
+} else if (i % 2 === 0) {
+		continue;
+	}
+	console.log('FOIA Released Data ' + i);
+}
+
+
+
+
+	</script>
+
+</body>
+</html>
