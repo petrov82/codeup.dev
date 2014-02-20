@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Array Intro for JS</title>
+</head>
+<body>
+<script>
+	var Macs = ['Performa', 'MacBookPro', 'PowerMac', 'MacPro', 'Macintosh Classic', 'iMac', 'PowerBook'];
+
+// 	console.log(Macs.length);
+
+// 	// The first Mac is: square
+// console.log('The first Mac is: ' + Macs[0]);
+
+// // The second Mac is: rectangle
+// console.log('The second Mac is: ' + Macs[1]);
+
+// // The third Mac is: circle
+// console.log('The third Mac is: ' + Macs[2]);
+
+// // The fourth Mac is: triangle
+// console.log('The fourth Mac is: ' + Macs[3]);
+
+// // The fifth Mac is: undefined
+// console.log('The fifth Mac is: ' + Macs[4]);
+
+// // The sixth Mac is: undefined
+// console.log('The sixth Mac is: ' + Macs[5]);
+
+// // The seventh Mac is: undefined
+// console.log('The seventh Mac is: ' + Macs[6]);
+
+for (var i = 0; i < Macs.length; i++) {
+    console.log('The Mac at index ' + i + ' is: ' + Macs[i]);
+}
+
+Macs.forEach(function(element, index, array){
+
+	console.log('The Mac at index ' + index + ' is ' + element); 
+});
+
+	</script>
+
+</body>
+</html>
