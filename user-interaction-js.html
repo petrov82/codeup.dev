@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>User  for JS</title>
+</head>
+<body>
+
+<p>
+<script>
+
+// alert("You're Awesome!");
+
+// todo: Ask the user for their name.
+//       Keep asking if an empty input is provided.
+confirm('Are you having a good day?');
+var count = 0;
+do {
+
+	var name = prompt('What is your name?');
+	if (name == 0) {
+		alert('oops, you need to enter a name');
+
+	} 
+} while (name == 0)
+
+
+
+// todo: Show an alert message that welcomes the user based on their input.
+	alert('Welcome to the site, ' + name);
+
+
+// todo: Ask the user if they like pizza.
+//       Based on their answer tell show a creative alert message.
+var likesPizza = confirm('Do you like Pizza?');
+	if (likesPizza) {
+		alert('AND PIZZA LIKES YOU, ' + name + '!!!!!!!!');
+	} else {
+		alert('Well, Pizza likes you, ' + name + '. Pizza likes you.')
+	}
+
+
+
+</script>
+</body>
+
+</html>
+
+
