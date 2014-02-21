@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Scope for JS</title>
+</head>
+<body>
+<script>
+	
+	
+
+// todo:
+// Create a function called 'sayHello' that takes a parameter 'name'.
+// When called, the function should log a message that says hello from the passed in name.
+(function() {
+	var myNamesAre = ['Bubba', 'Pipiopi', 'Peter']; // todo: Fill in your name here.
+	var myNameIs = myNamesAre[Math.floor(Math.random()*myNamesAre.length)];
+	// console.log('My name is ' + sayHello(myNameIs) + '. What is your name?');
+	console.log(myNameIs);
+}());
+
+
+
+// todo: Call the function 'sayHello' passing the variable 'myNameIs' as a parameter.
+
+// don't worry about the details of this line
+// just know that it genrates a random number between 1 and 100
+
+
+// todo:
+// Create a function called 'isOdd' that takes a number as a parameter.
+// The function should use the ternary operator to log a message.
+// The log should tell the number passed in and whether it is odd or not.
+(function() {
+	var random = Math.floor((Math.random()*100)+1);
+	random % 2 === 0 ? console.log(random + ' is an even number. Try again.') : console.log(random + ' is an odd number. Thank you.');
+	}());
+
+// todo: Call the function 'isOdd' passing the variable 'random' as a parameter.
+
+	</script>
+
+</body>
+</html>
