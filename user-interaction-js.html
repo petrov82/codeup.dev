@@ -5,7 +5,29 @@
 	<title>User  for JS</title>
 </head>
 <body>
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script>
+  body {
+    font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+    font-size: 62.5%;
+}
 
+  </script>
+  <script>
+  $(function() {
+    $( "#dialog" ).dialog();
+  });
+  </script>
+</head>
+<body>
+
+<div id="dialog" title="Basic dialog">
+  <p>Image:</p>
+  <img src="http://placehold.it/50x50" alt="Placeholder Image" />
+
+</div> -->
 <p>
 <script>
 
@@ -14,29 +36,29 @@
 // todo: Ask the user for their name.
 //       Keep asking if an empty input is provided.
 confirm('Are you having a good day?');
-var count = 0;
+
 do {
 
-	var name = prompt('What is your name?');
-	if (name == 0) {
-		alert('oops, you need to enter a name');
+	var name = prompt('What is your username?');
+	if (username == null) {
+		alert('oops, you need to enter a username');
 
 	} 
-} while (name == 0)
+} while (username == null || username === '')
 
 
 
 // todo: Show an alert message that welcomes the user based on their input.
-	alert('Welcome to the site, ' + name);
+	alert('Welcome to the site, ' + username);
 
 
 // todo: Ask the user if they like pizza.
 //       Based on their answer tell show a creative alert message.
 var likesPizza = confirm('Do you like Pizza?');
 	if (likesPizza) {
-		alert('AND PIZZA LIKES YOU, ' + name + '!!!!!!!!');
+		alert('AND PIZZA LIKES YOU, ' + username + '!!!!!!!!');
 	} else {
-		alert('Well, Pizza likes you, ' + name + '. Pizza likes you.')
+		alert('Well, Pizza likes you, ' + username + '. Pizza likes you.')
 	}
 
 
