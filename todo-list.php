@@ -1,5 +1,6 @@
-<?php 
+<!DOCTYPE html>
 
+<?php 
 
 echo "<p>POST:</p>";
 var_dump($_POST);
@@ -9,8 +10,6 @@ var_dump($_GET);
 
 ?>
 
-
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -29,9 +28,53 @@ var_dump($_GET);
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body bgcolor="#E6E6FA">
   <body>
+
     <h1>The TODO List</h1>
+
+  <?php  
+// create an empty array
+  
+  $filename = 'data/list.txt';
+  
+
+// Iterate through list items
+function list_items($assignment) {
+
+    $list = '';
+ 
+    foreach ($assignment as $key => $value) {
+
+       $list .= $value . PHP_EOL;
+   }
+   return $list;
+}
+
+//set function to write to $filename
+function view_file($target_file) {
+
+    $handle = fopen($target_file, "r");
+    $contents = fread($handle, filesize($target_file));
+    $contents_array = explode("\n", $contents);
+    fclose($handle);
+    return $contents_array;
+}
+
+$items = (filesize($filename) > 0) ? view_file($filename) : array();
+
+
+// save items to file
+function save_file($target_file, $new_items) {
+
+    $handle = fopen($target_file, 'w');
+    //foreach ($new_items as $new_item) {
+    fwrite($handle, implode("\n", $new_items));
+    //}
+    fclose($handle);
+}
+
+?>
+
     <hr>
   <p>
     <nav>
@@ -42,23 +85,50 @@ var_dump($_GET);
 
     <h3><u>Make a list of things you need to do.</u></h3>
 
-    <form method="GET" action="">
+<?php 
+//check if the assignment to the Post array is an array
+  $items = (view_file($filename));
+    if (isset($_POST['assignment']) && ($_POST['assignment'] != "")) {
+      $item = $_POST['assignment'];
+      array_push($items, $item);
+      save_file($filename, $items);
+      header("Location: todo-list.php");
+      exit(0);
+    }
+  // confer identity of items to the loaded text file
+?>
+
+<?php 
+// remove items from array
+
+    if (isset($_GET['remove'])) {
+      $itemId = $_GET['remove'];
+      unset($items[$itemId]);
+      save_file($filename, $items);
+      header("Location: todo-list.php");
+      exit(0);
+    }
+
+    
+  // confer identity of items to the loaded text file
+?>
+<!--use form to add new items to array-->
+    <form method="POST" action="">
       <p>
           <label for="assignment">New Item</label>
-          <input id="assignment" name="assignment" type="text" placeholder="Item to do...">
+          <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
       </p>
       <p>
           <input type="submit" name="submit" value="Add Item">
-          <button type="reset">Reset</button>
       </p>
-      <p>
-        <label for="checkbox">Do You Want to save?</label>
-        <input id="checkbox" name="checkbox" type="checkbox" value="1" checked></p>
   </form>
+
     <ul>
-    <li>Buy Pizza</li>
-    <li>Buy Soda</li>
-    <li>Buy Birthday present for Kelli</li>
+      <?php
+      // cull thru items array and list each item
+      foreach ($items as $key => $item) {
+       echo "<li>$item |<a href=\"?remove=$key\"> Remove Item</a></li>";
+      } ?>
   </ul>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
