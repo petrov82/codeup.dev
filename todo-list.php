@@ -8,6 +8,9 @@ var_dump($_POST);
 echo "<p>GET:</p>";
 var_dump($_GET);
 
+echo "<p>FILES:<?p>";
+var_dump($_FILES);
+
 ?>
 
 <html lang="en">
@@ -73,6 +76,64 @@ function save_file($target_file, $new_items) {
     fclose($handle);
 }
 
+// check if the assignment to the Post array is an array
+// confer identity of items to the loaded text file
+  $items = (view_file($filename));
+    if (isset($_POST['assignment']) && ($_POST['assignment'] != "")) {
+      $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
+      array_push($items, $item);
+      save_file($filename, $items);
+      header("Location: todo-list.php");
+      exit(0);
+    }
+  
+// remove items from array
+
+  if (isset($_GET['remove'])) {
+      $itemId = $_GET['remove'];
+      unset($items[$itemId]);
+      save_file($filename, $items);
+      header("Location: todo-list.php");
+      exit(0);
+    }
+
+    // Verify there were uploaded files and no errors
+  if ((count($_FILES) > 0 && $_FILES['file1']['error'] == 0) && ($_FILES['file1']['type'] == 'text/plain')) {
+    // Set the destination directory for uploads
+    $upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
+    // Grab the filename from the uploaded file by using basename
+    $new_file = basename($_FILES['file1']['name']);
+    // Create the saved filename using the file's original name and our upload directory
+    $saved_filename = $upload_dir . $new_file;
+    // Move the file from the temp location to our uploads directory
+    move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
+
+    $new_items = view_file($saved_filename);
+    //if the checkbox returns true
+    //set items array to file array ($new_items)
+    
+    //$items = if (isset($_POST['override']) ? $new_items : array_merge($items, $new_items);
+    var_dump($_POST['override']);
+    
+   
+    save_file($filename, $items);
+
+  }
+
+    
+    
+  //set condition if file is empty to stop and report error
+  //   } elseif {
+  //     # code...
+  //   }  {
+  //   echo "That file was not a text file, so I didn't add anything.";
+  // }
+
+  // Check if we saved a file
+  if (isset($saved_filename)) {
+      // If we did, show a link to the uploaded file
+      echo "<p>You can download your file <a href='/uploads/{$filename}'>here</a>.</p>";
+  }
 ?>
 
     <hr>
@@ -85,50 +146,31 @@ function save_file($target_file, $new_items) {
 
     <h3><u>Make a list of things you need to do.</u></h3>
 
-<?php 
-//check if the assignment to the Post array is an array
-  $items = (view_file($filename));
-    if (isset($_POST['assignment']) && ($_POST['assignment'] != "")) {
-      $item = $_POST['assignment'];
-      array_push($items, $item);
-      save_file($filename, $items);
-      header("Location: todo-list.php");
-      exit(0);
-    }
-  // confer identity of items to the loaded text file
-?>
-
-<?php 
-// remove items from array
-
-    if (isset($_GET['remove'])) {
-      $itemId = $_GET['remove'];
-      unset($items[$itemId]);
-      save_file($filename, $items);
-      header("Location: todo-list.php");
-      exit(0);
-    }
-
-    
-  // confer identity of items to the loaded text file
-?>
 <!--use form to add new items to array-->
-    <form method="POST" action="">
+    <form method="POST" enctype="multipart/form-data" action="">
       <p>
           <label for="assignment">New Item</label>
           <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
       </p>
+
+      <p>
+          <label for="file1">Upload a List</label>
+          <input id="file1" name="file1" type="file">
+      </p>
+      <p>
+        <label for="override">Do You Want to Override the current list?</label>
+        <input id="override" name="override" type="checkbox" value="1"></p>
       <p>
           <input type="submit" name="submit" value="Add Item">
       </p>
   </form>
 
     <ul>
-      <?php
-      // cull thru items array and list each item
-      foreach ($items as $key => $item) {
-       echo "<li>$item |<a href=\"?remove=$key\"> Remove Item</a></li>";
-      } ?>
+      <?
+      // cull thru items array and list each item with assigned keys
+      foreach ($items as $key => $item): ?>
+        <li><?= htmlspecialchars(htmlentities(strip_tags($item))) ?>  |<a href=\"?remove=$key\"> Remove Item</a></li>
+      <? endforeach; ?>
   </ul>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
