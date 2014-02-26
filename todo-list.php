@@ -169,7 +169,7 @@ function save_file($target_file, $new_items) {
       <?
       // cull thru items array and list each item with assigned keys
       foreach ($items as $key => $item): ?>
-        <li><?= htmlspecialchars(htmlentities(strip_tags($item))) ?>  |<a href=\"?remove=$key\"> Remove Item</a></li>
+        <li><?= htmlspecialchars(htmlentities(strip_tags($item))) ?>  |<a href=?remove=<?=$key?> > Remove Item</a></li>
       <? endforeach; ?>
   </ul>
 
