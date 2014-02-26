@@ -1,0 +1,28 @@
+input:focus,textarea:focus,select:focus{
+ border:1px solid #fafafa;
+ -webkit-box-shadow:0 0 6px #007eff;
+ -moz-box-shadow:0 0 5px #007eff;
+ box-shadow:0 0 5px #007eff;
+}
+
+body {
+	background-image:url('img/ricepaper.jpg');
+}
+
+.back {
+	margin:auto;
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	width: 900px;
+	height: 600px;
+	background-attatchment: fixed;
+	background-color: #EFF0F4;
+	border-radius: 20px;
+
+}
+
+
+
+font: Helvetica Nue
