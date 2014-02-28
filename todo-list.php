@@ -41,17 +41,7 @@ var_dump($_FILES);
   $filename = 'data/list.txt';
   
 
-// Iterate through list items
-function list_items($assignment) {
 
-    $list = '';
- 
-    foreach ($assignment as $key => $value) {
-
-       $list .= $value . PHP_EOL;
-   }
-   return $list;
-}
 
 //set function to write to $filename
 function view_file($target_file) {
