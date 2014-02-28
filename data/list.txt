@@ -1,3 +1,0 @@
-finish address book
-Refactor AB and TDL with class code
-no taking phonecalls while in class
