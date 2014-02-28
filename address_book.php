@@ -1,46 +1,8 @@
 <?php
 
-//create class to open & close csv file
-class AddressDataStore{
+require_once("Filesource.php");
 
-// }
-// identify file from which data is pulled
-	public $filename = '';
-
-	//open csv file
-	public function open_csv() {
-		
-		// if (filesize($this->filename) > 0) {
-		// 	$address_book = $this->filename;
-		// } else {
-			$address_book = [];
-		// }
-
-		if (($handle = fopen($this->filename, "r")) !== FALSE) {
-			while (($fields = fgetcsv($handle)) !== FALSE) {
-				array_push($address_book, $fields);
-				//echo gettype($fields);
-			}
-
-	    	fclose($handle);
-		}
-		
-		return $address_book;
-	}
-	// function designed to save new input to the file
-	public function write_csv($entry) {
-		$handle = fopen($this->filename, 'w');
-		foreach ($entry as $item) {
-	    	fputcsv($handle, $item);
-		}
-
-	    fclose($handle);
-		}	
-}
-
-$address_book = new AddressDataStore;
-
-$address_book->filename = "address_book.csv";
+$address_book = new AddressDataStore("address_book.csv");
 
 $addresses = $address_book->open_csv();
 
@@ -120,11 +82,20 @@ if (isset($_GET['remove'])) {
 
 
 	<table>
-				
+
+		<tr>
+			<td>* Name</td>
+			<td>|&nbsp* Address</td>
+			<td>|&nbsp* City</td>
+			<td>|&nbsp* State/Region</td>
+			<td>|&nbsp* Postal Code</td>
+			<td>|&nbsp* Phone Number</td>
+
+		</tr>		
 		<?php foreach ($addresses as $key => $row): ?>
 			<tr> <?php foreach ($row as $key2 => $value2): ?>
 				<td> <?= htmlspecialchars(htmlentities(strip_tags($value2)))?> </td>
-			<?php endforeach ?> <td>|<a href=?remove=<?=$key?> > Remove Item</a></li></td></tr> 
+			<?php endforeach ?> <td>	<a href=?remove=<?=$key?> > Remove Item</a></li></td></tr> 
 		<?php endforeach ?> 
 	
 	</table>
