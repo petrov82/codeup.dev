@@ -1,66 +1,77 @@
 <?php
+
+//create class to open & close csv file
+// class AddressDataStore{
+
+// }
 // identify file from which data is pulled
 $filename = 'address_book.csv';
-$address_book = [];
 
-if (!empty($_POST)) {
-$fields = ([$_POST['name'], $_POST['street'], $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['usrtel'],]);
-} else {
-
-}
-
-//display the csv as a table
-// echo "<html><body><h2><u>Address Book</u></h2><table>\n\n";
-// $address_book = fopen($filename, "r");
-// while (($fields = fgetcsv($address_book)) !== false) {
-//         echo "<tr>";
-//         foreach ($fields as $cell) {
-//                 echo "<td>" . htmlspecialchars($cell) . "</td>";
-//         }
-//         echo "</tr>\n";
-// }
-// fclose($address_book);
-// echo "\n</table></body></html>";
-
-function open_csv($filename) {
-	$handle = fopen($filename, "r");
-	while (($fields = fgetcsv($handle)) !== false) {
-        foreach ($fields as $fields) {
-}
-fclose($address_book);
-echo "\n</table></body></html>";
+//open csv file
+function open_csv($target_file) {
+	$address_book = [];
+	if (($handle = fopen($target_file, "r")) !== FALSE) {
+		while (($fields = fgetcsv($handle)) !== FALSE) {
+		array_push($address_book, $fields);
+		}
+    	fclose($handle);
+	}
 	
+	return $address_book;
 }
-
 // function designed to save new input to the file
-function write_csv($filename, $fields) {
-	$handle = fopen($filename, 'w');
-	foreach ($fields as $item) {
-    fputcsv($handle, $item);
+function write_csv($target_file, $entry) {
+	$handle = fopen($target_file, 'w');
+	foreach ($entry as $item) {
+    	fputcsv($handle, $item);
 	}
     fclose($handle);
-}
+}	
 
-if (isset($_POST)) {
-	array_push($address_book, $fields);
-	write_csv($filename, $address_book);
-	//header("Location: address_book.php");
-      exit(0);
-}
+// rename addressbook
+$address_book = (filesize($filename) > 0) ? open_csv($filename) : array();
+
+
+
+
+$error_messages = [];
+//push new fields onto address book array
+if (!empty($_POST)) {
 	
+			$field['name'] = $_POST['name'];
+			$field['street'] = $_POST['street'];
+			$field['city'] = $_POST['city'];
+			$field['state'] = $_POST['state'];
+			$field['zip'] = $_POST['zip'];
+			$field['usrtel'] = $_POST['usrtel'];
 
+			
+		foreach ($field as $key => $value) {
+			if (empty($value)) {
+				array_push($error_messages, "$key must have a value");	
+    		}	
+		}
+		if (empty($error_messages)) {
+				array_push($address_book, $field);
+				write_csv($filename, $address_book);
+				// header("Location: address_book.php");
+  //   			exit(0);
+				}
+} 
 
-
-
+if (isset($_GET['remove'])) {
+      $itemId = $_GET['remove'];
+      unset($address_book[$itemId]);
+      write_csv($filename, $address_book);
+      header("Location: address_book.php");
+      exit(0);
+    }
 
 
 // Step 1) create table with proper headings in a csv file,  
 // Create form below for adding new entries. Each entry should take a name, address, city, state, zip, and phone.
 	
 // Step 2) Create a function to store a new entry. A new entry should have validate 5 required row: name, address, city, state, and zip. Display error if each is not filled out. place each entry into an array and then push that array onto the greater array.
-
-	
-    
 
 // Step 3) Use a CSV file to save to your list after each valid entry.
 
@@ -75,33 +86,77 @@ if (isset($_POST)) {
 <head>
 	<title>Address Book</title>
 </head>
+
+
+
+
+
+
+
+
 <body>
+
+
+
+
+
+
+
+	<h2><u>Address Book</u></h2>
+
+
+
+
+
+	<table>
+				
+		<?php foreach ($address_book as $key => $row): ?>
+			<tr> <?php foreach ($row as $key => $value): ?>
+				<td> <?= htmlspecialchars(htmlentities(strip_tags($value)))?> </td>
+			<?php endforeach ?> </tr> 
+		<?php endforeach ?> |<a href=?remove=<?=$key?> > Remove Item</a></li>
+	
+	</table>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<br>
 	<hr>
-	<form method="POST" enctype="multipart/form-data" action="">
+	<form method="POST" enctype="multipart/form-data" action="" >
 		<p>
           <label for="name">Name *</label>
-          <input id="name" name="name" type="text" autofocus='autofocus' placeholder="Enter Full Name">
+          <input id="name" name="name" type="text" autofocus='autofocus' placeholder="Enter Full Name" >
       </p>
       <p>
           <label for="street">Street Address *</label>
-          <input id="street" name="street" type="text" autofocus='autofocus' placeholder="Enter Address">
+          <input id="street" name="street" type="text" placeholder="Enter Address" >
       </p>
       <p>
           <label for="city">City *</label>
-          <input id="city" name="city" type="text" autofocus='autofocus' placeholder="Enter City">
+          <input id="city" name="city" type="text" placeholder="Enter City" >
       </p>
       <p>
           <label for="state">State/Region *</label>
-          <input id="state" name="state" type="text" autofocus='autofocus' placeholder="Enter State or Region">
+          <input id="state" name="state" type="text" placeholder="Enter State or Region" >
       </p>
       <p>
           <label for="zip">Postal Code *</label>
-          <input id="zip" name="zip" type="text" autofocus='autofocus' placeholder="Enter ZIP">
+          <input id="zip" name="zip" type="text" placeholder="Enter ZIP" >
       </p>
       <p>
           <label for="phone">Telephone </label>
-          <input id="phone" name="usrtel" type="tel" autofocus='autofocus' placeholder="Enter Phone Number">
+          <input id="phone" name="usrtel" type="tel" placeholder="Enter Phone Number">
       </p>
       <p>
           <input type="submit" name="submit" value="Add Item">
