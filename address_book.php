@@ -1,37 +1,48 @@
 <?php
 
 //create class to open & close csv file
-// class AddressDataStore{
+class AddressDataStore{
 
 // }
 // identify file from which data is pulled
-$filename = 'address_book.csv';
+	public $filename = '';
 
-//open csv file
-function open_csv($target_file) {
-	$address_book = [];
-	if (($handle = fopen($target_file, "r")) !== FALSE) {
-		while (($fields = fgetcsv($handle)) !== FALSE) {
-		array_push($address_book, $fields);
+	//open csv file
+	public function open_csv() {
+		
+		// if (filesize($this->filename) > 0) {
+		// 	$address_book = $this->filename;
+		// } else {
+			$address_book = [];
+		// }
+
+		if (($handle = fopen($this->filename, "r")) !== FALSE) {
+			while (($fields = fgetcsv($handle)) !== FALSE) {
+				array_push($address_book, $fields);
+				//echo gettype($fields);
+			}
+
+	    	fclose($handle);
 		}
-    	fclose($handle);
+		
+		return $address_book;
 	}
-	
-	return $address_book;
+	// function designed to save new input to the file
+	public function write_csv($entry) {
+		$handle = fopen($this->filename, 'w');
+		foreach ($entry as $item) {
+	    	fputcsv($handle, $item);
+		}
+
+	    fclose($handle);
+		}	
 }
-// function designed to save new input to the file
-function write_csv($target_file, $entry) {
-	$handle = fopen($target_file, 'w');
-	foreach ($entry as $item) {
-    	fputcsv($handle, $item);
-	}
-    fclose($handle);
-}	
 
-// rename addressbook
-$address_book = (filesize($filename) > 0) ? open_csv($filename) : array();
+$address_book = new AddressDataStore;
 
+$address_book->filename = "address_book.csv";
 
+$addresses = $address_book->open_csv();
 
 
 $error_messages = [];
@@ -52,8 +63,8 @@ if (!empty($_POST)) {
     		}	
 		}
 		if (empty($error_messages)) {
-				array_push($address_book, $field);
-				write_csv($filename, $address_book);
+				array_push($addresses, $field);
+				$address_book->write_csv($addresses);
 				// header("Location: address_book.php");
   //   			exit(0);
 				}
@@ -61,8 +72,8 @@ if (!empty($_POST)) {
 
 if (isset($_GET['remove'])) {
       $itemId = $_GET['remove'];
-      unset($address_book[$itemId]);
-      write_csv($filename, $address_book);
+      unset($addresses[$itemId]);
+      $address_book->write_csv($addresses);
       header("Location: address_book.php");
       exit(0);
     }
@@ -110,11 +121,11 @@ if (isset($_GET['remove'])) {
 
 	<table>
 				
-		<?php foreach ($address_book as $key => $row): ?>
-			<tr> <?php foreach ($row as $key => $value): ?>
-				<td> <?= htmlspecialchars(htmlentities(strip_tags($value)))?> </td>
-			<?php endforeach ?> </tr> 
-		<?php endforeach ?> |<a href=?remove=<?=$key?> > Remove Item</a></li>
+		<?php foreach ($addresses as $key => $row): ?>
+			<tr> <?php foreach ($row as $key2 => $value2): ?>
+				<td> <?= htmlspecialchars(htmlentities(strip_tags($value2)))?> </td>
+			<?php endforeach ?> <td>|<a href=?remove=<?=$key?> > Remove Item</a></li></td></tr> 
+		<?php endforeach ?> 
 	
 	</table>
 	
