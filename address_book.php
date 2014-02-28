@@ -1,6 +1,6 @@
 <?php
 
-require_once("Filesource.php");
+require_once("AddressDataStore.php");
 
 $address_book = new AddressDataStore("address_book.csv");
 
@@ -27,8 +27,8 @@ if (!empty($_POST)) {
 		if (empty($error_messages)) {
 				array_push($addresses, $field);
 				$address_book->write_csv($addresses);
-				// header("Location: address_book.php");
-  //   			exit(0);
+				header("Location: address_book.php");
+    			exit(0);
 				}
 } 
 
