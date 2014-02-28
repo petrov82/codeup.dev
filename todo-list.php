@@ -1,44 +1,5 @@
-<!DOCTYPE html>
-
-<?php 
-
-echo "<p>POST:</p>";
-var_dump($_POST);
-
-echo "<p>GET:</p>";
-var_dump($_GET);
-
-echo "<p>FILES:<?p>";
-var_dump($_FILES);
-
-?>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The TODO List</title>
-    <link rel="stylesheet" type="text/css" href="theme.css">
-
-    <!-- Bootstrap -->
-    <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-
-    <h1>The TODO List</h1>
-
-  <?php  
-// create an empty array
-  
-  $filename = 'data/list.txt';
+<?php
+$filename = 'data/list.txt';
   
 
 
@@ -124,8 +85,34 @@ function save_file($target_file, $new_items) {
       // If we did, show a link to the uploaded file
       echo "<p>You can download your file <a href='/uploads/{$filename}'>here</a>.</p>";
   }
+
 ?>
 
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The TODO List</title>
+    <link rel="stylesheet" type="text/css" href="theme.css">
+
+    <!-- Bootstrap -->
+    <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <h1>The TODO List</h1>
     <hr>
   <p>
     <nav>
