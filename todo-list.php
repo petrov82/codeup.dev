@@ -74,11 +74,11 @@ function save_file($target_file, $new_items) {
     //if the checkbox returns true
     //set items array to file array ($new_items)
     
-    //$items = if (isset($_POST['override']) ? $new_items : array_merge($items, $new_items);
-    var_dump($_POST['override']);
-    
+    $items = (isset($_POST['override'])) ? $new_items : array_merge($items, $new_items);
    
     save_file($filename, $items);
+    header("Location: todo-list.php");
+    exit(0);
 
   }
 
