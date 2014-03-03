@@ -4,7 +4,7 @@ require_once("AddressDataStore.php");
 
 $address_book = new AddressDataStore("address_book.csv");
 
-$addresses = $address_book->open_csv();
+$addresses = $address_book->open();
 
 
 $error_messages = [];
@@ -26,7 +26,7 @@ if (!empty($_POST)) {
 		}
 		if (empty($error_messages)) {
 				array_push($addresses, $field);
-				$address_book->write_csv($addresses);
+				$address_book->write($addresses);
 				header("Location: address_book.php");
     			exit(0);
 				}
@@ -35,7 +35,7 @@ if (!empty($_POST)) {
 if (isset($_GET['remove'])) {
       $itemId = $_GET['remove'];
       unset($addresses[$itemId]);
-      $address_book->write_csv($addresses);
+      $address_book->write($addresses);
       header("Location: address_book.php");
       exit(0);
     }
@@ -137,7 +137,7 @@ if (isset($_GET['remove'])) {
           <input id="zip" name="zip" type="text" placeholder="Enter ZIP" >
       </p>
       <p>
-          <label for="phone">Telephone </label>
+          <label for="phone">Telephone *</label>
           <input id="phone" name="usrtel" type="tel" placeholder="Enter Phone Number">
       </p>
       <p>
