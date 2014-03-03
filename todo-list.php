@@ -30,12 +30,18 @@ function save_file($target_file, $new_items) {
 // check if the assignment to the Post array is an array
 // confer identity of items to the loaded text file
   $items = (view_file($filename));
-    if (isset($_POST['assignment']) && ($_POST['assignment'] != "")) {
+  try{  if (isset($_POST['assignment']) && ($_POST['assignment'] != "")) {
+      if (count_chars($_POST['assignment']) > 240) {
+        throw new Exception("Error Processing Request. Go Back to undo. Use 240 characters or less.");
+      }
+
       $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
       array_push($items, $item);
       save_file($filename, $items);
       header("Location: todo-list.php");
       exit(0);
+    }} catch (Exception $e) {
+      echo "<p>Catching!!!!!</p>";
     }
   
 // remove items from array
@@ -126,17 +132,16 @@ function save_file($target_file, $new_items) {
 <!--use form to add new items to array-->
     <form method="POST" enctype="multipart/form-data" action="">
       <p>
-          <label for="assignment">New Item</label>
-          <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
-      </p>
-
-      <p>
           <label for="file1">Upload a List</label>
           <input id="file1" name="file1" type="file">
       </p>
       <p>
         <label for="override">Do You Want to Override the current list?</label>
         <input id="override" name="override" type="checkbox" value="1"></p>
+      <p>
+          <label for="assignment">New Item</label>
+          <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
+      </p>
       <p>
           <input type="submit" name="submit" value="Add Item">
       </p>
