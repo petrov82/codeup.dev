@@ -11,25 +11,24 @@ $error_messages = [];
 //push new fields onto address book array
 if (!empty($_POST)) {
 	
-			$field['name'] = $_POST['name'];
-			$field['street'] = $_POST['street'];
-			$field['city'] = $_POST['city'];
-			$field['state'] = $_POST['state'];
-			$field['zip'] = $_POST['zip'];
-			$field['usrtel'] = $_POST['usrtel'];
+	$field['name'] = $_POST['name'];
+	$field['street'] = $_POST['street'];
+	$field['city'] = $_POST['city'];
+	$field['state'] = $_POST['state'];
+	$field['zip'] = $_POST['zip'];
+	$field['usrtel'] = $_POST['usrtel'];
 
-			
-		foreach ($field as $key => $value) {
-			if (empty($value)) {
-				array_push($error_messages, "$key must have a value");	
-    		}	
-		}
-		if (empty($error_messages)) {
-				array_push($addresses, $field);
-				$address_book->write($addresses);
-				header("Location: address_book.php");
-    			exit(0);
-				}
+	foreach ($field as $key => $value) {
+		if (empty($value)) {
+			array_push($error_messages, "$key must have a value");	
+		}	
+	}
+	if (empty($error_messages)) {
+			array_push($addresses, $field);
+			$address_book->write($addresses);
+			header("Location: address_book.php");
+			exit(0);
+			}
 } 
 
 if (isset($_GET['remove'])) {
