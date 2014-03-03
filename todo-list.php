@@ -30,9 +30,13 @@ function save_file($target_file, $new_items) {
 // check if the assignment to the Post array is an array
 // confer identity of items to the loaded text file
   $items = (view_file($filename));
-  try{  if (isset($_POST['assignment']) && ($_POST['assignment'] != "")) {
-      if (count_chars($_POST['assignment']) > 240) {
-        throw new Exception("Error Processing Request. Go Back to undo. Use 240 characters or less.");
+  try {
+    if (isset($_POST['assignment'])) {
+      if ($_POST['assignment'] == "") {
+        throw new Exception("Error Processing Request. Go Back to undo. You must input something.");
+      }
+      elseif (strlen($_POST['assignment']) > 240) {
+          throw new Exception("Error Processing Request. Go Back to undo. Use 240 characters or less.");
       }
 
       $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
@@ -40,9 +44,10 @@ function save_file($target_file, $new_items) {
       save_file($filename, $items);
       header("Location: todo-list.php");
       exit(0);
-    }} catch (Exception $e) {
-      echo "<p>Catching!!!!!</p>";
     }
+   } catch (Exception $e) {
+       echo "<p>Error Processing Request. You must input something, or use 240 characters or <strong>less</strong>.</p>";
+   }
   
 // remove items from array
 
