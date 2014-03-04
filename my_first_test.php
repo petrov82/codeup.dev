@@ -20,8 +20,8 @@ var_dump($_GET);
 	<hr>
 	<p>
 		<nav>
-		<a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The TODO List</a>
-		</nav
+    	<a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The To-Do List</a> &nbsp; <a href="address_book.php">Address Book</a>
+    	</nav>
 	</p>
 	<hr/>
 	<body>
@@ -128,8 +128,8 @@ var_dump($_GET);
 <hr>
 	<p>
 		<nav>
-		<a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The TODO List</a>
-		</nav
+    	<a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The To-Do List</a> &nbsp; <a href="address_book.php">Address Book</a>
+    	</nav>
 	</p>
 	<hr/>
 </html>
