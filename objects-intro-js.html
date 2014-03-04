@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>
+			Objects for JS
+		</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var baker = {};
+			baker.ingredient1 = 'butter';
+			baker.ingredient2 = 'flour';
+			baker.ingredient3 = 'milk';
+			
+			baker.fry = function() {
+				console.log('Frying ' + this.ingredient1 + ' and ' + this.ingredient2);
+				document.write('Frying ' + this.ingredient1 + ' and ' + this.ingredient2 + '.');
+			};
+
+			baker.mix = function() {
+				console.log('Mixing ' + this.ingredient1 + ', '  + this.ingredient2 + ', ' + 'and ' + this.ingredient3 + '.');
+				document.write('Mixing ' + this.ingredient1 + ', '  + this.ingredient2 + ', ' + 'and ' + this.ingredient3 + '.');
+			};
+		</script>
+		<p>
+			<script>
+			baker.mix();
+		</script>
+	</p>
+		<p>
+			<script>
+			baker.fry();
+		</script>
+	</p>
+
+	<script type="text/javascript">
+			var person = {};
+			person.titleName = 'The';
+			person.firstName = 'Doctor';
+			person.lastName = 'Who';
+			
+			person.declaration = function() {
+				console.log("I'm " + this.titleName + ' ' + this.firstName);
+				document.write("I'm " + this.titleName + ' ' + this.firstName + '.');
+			};
+
+			person.query = function() {
+				console.log(this.firstName + ' '  + this.lastName + '?');
+				document.write(this.firstName + ' '  + this.lastName + '?');
+			};
+
+			person.retort = function() {
+				console.log("Just " + this.titleName + ' ' + this.firstName);
+				document.write("Just " + this.titleName + ' ' + this.firstName + '.');
+			};
+
+			person.greet = function() {
+				console.log('Hello ' + this.firstName + '!');
+				document.write('Hello ' + this.firstName + '!');
+			};
+		</script>
+		<p>
+			<script>
+			person.declaration();
+		</script>
+	</p>
+		<p>
+			<script>
+			person.query();
+		</script>
+	</p>
+	<p>
+			<script>
+			person.retort();
+		</script>
+	</p>
+	<p>
+			<script>
+			person.greet();
+		</script>
+	</p>
+	</body>
+</html>
