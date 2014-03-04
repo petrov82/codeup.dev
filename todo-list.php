@@ -1,8 +1,7 @@
 <?php
 $filename = 'data/list.txt';
-  
 
-
+$default = "You have no items!";
 
 //set function to write to $filename
 function view_file($target_file) {
@@ -14,9 +13,6 @@ function view_file($target_file) {
     return $contents_array;
 }
 
-$items = (filesize($filename) > 0) ? view_file($filename) : array();
-
-
 // save items to file
 function save_file($target_file, $new_items) {
 
@@ -27,9 +23,11 @@ function save_file($target_file, $new_items) {
     fclose($handle);
 }
 
-// check if the assignment to the Post array is an array
 // confer identity of items to the loaded text file
-  $items = (view_file($filename));
+$items = (filesize($filename) > 0) ? view_file($filename) : array();
+
+// check if the assignment to the Post array is an array
+// try/catch to message back exception
   try {
     if (isset($_POST['assignment'])) {
       if ($_POST['assignment'] == "") {
@@ -82,8 +80,6 @@ function save_file($target_file, $new_items) {
 
   }
 
-    
-    
   //set condition if file is empty to stop and report error
   //   } elseif {
   //     # code...
@@ -127,7 +123,7 @@ function save_file($target_file, $new_items) {
     <hr>
   <p>
     <nav>
-    <a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The TODO List</a>
+    <a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The To-Do List</a> &nbsp; <a href="address_book.php">Address Book</a>
     </nav>
   </p>
   <hr/>
@@ -147,6 +143,7 @@ function save_file($target_file, $new_items) {
           <label for="assignment">New Item</label>
           <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
       </p>
+      <p><?= empty($items) ? $default : "" ; ?></p>
       <p>
           <input type="submit" name="submit" value="Add Item">
       </p>
@@ -167,7 +164,7 @@ function save_file($target_file, $new_items) {
     <hr>
   <p>
     <nav>
-    <a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The TODO List</a>
+    <a href="index.html">Home</a> &nbsp; <a href="hello-world.html">About Me</a>  &nbsp; <a href="my_first_test.php">Test Form</a> &nbsp; <a href="todo-list.php">The To-Do List</a> &nbsp; <a href="address_book.php">Address Book</a>
     </nav>
   </p>
   <hr/>
