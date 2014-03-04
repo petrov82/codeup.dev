@@ -1,4 +1,9 @@
 <?php
+/**
+* class extends Exception class to present custom exception
+*/
+class UnexpectedTypeException extends Exception{}
+
 $filename = 'data/list.txt';
 
 $default = "You have no items!";
@@ -36,16 +41,22 @@ $items = (filesize($filename) > 0) ? view_file($filename) : array();
       elseif (strlen($_POST['assignment']) > 240) {
           throw new Exception("Error Processing Request. Go Back to undo. Use 240 characters or less.");
       }
-
+      elseif (!is_string($_POST['assignment'])) {
+        throw new UnexpectedTypeException('$item must be a string');
+      }
       $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
       array_push($items, $item);
       save_file($filename, $items);
       header("Location: todo-list.php");
       exit(0);
     }
-   } catch (Exception $e) {
-       echo "<p>Error Processing Request. You must input something, or use 240 characters or <strong>less</strong>.</p>";
-   }
+  } catch (UnexpectedTypeException $ex) {
+      $wrongType = "<p>Error Processing Request. You must input words. These abstractions have no place here.</p>";
+  } catch (Exception $e) {
+       $catch = "<p>Error Processing Request. You must input something, or use 240 characters or <strong>less</strong>.</p>";
+  }
+    
+   
   
 // remove items from array
 
@@ -143,6 +154,8 @@ $items = (filesize($filename) > 0) ? view_file($filename) : array();
           <label for="assignment">New Item</label>
           <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
       </p>
+      <?= $catch ?>
+      <?= $wrongType ?>
       <p><?= empty($items) ? $default : "" ; ?></p>
       <p>
           <input type="submit" name="submit" value="Add Item">
