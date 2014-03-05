@@ -116,7 +116,7 @@ $items = (filesize($filename) > 0) ? view_file($filename) : array();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The TODO List</title>
-    <link rel="stylesheet" type="text/css" href="theme.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap -->
     <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
