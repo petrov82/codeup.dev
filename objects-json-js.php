@@ -65,11 +65,11 @@
 console.log(books);
 
 books.forEach(function(element, index, array){
-	document.write("Book #" + (index + 1));
-	document.write("Title: " + element.bookTitle);
-	document.write("Author: " + element.bookAuthor.firstName + " " + element.bookAuthor.lastName + ", d. " + element.bookAuthor.dateMort);
-	document.write("Year Published: " + element.bookPub)
-	document.write("---");
+	console.log("Book #" + (index + 1));
+	console.log("Title: " + element.bookTitle);
+	console.log("Author: " + element.bookAuthor.firstName + " " + element.bookAuthor.lastName + ", d. " + element.bookAuthor.dateMort);
+	console.log("Year Published: " + element.bookPub)
+	console.log("---");
 });
 /* Loop through the array of books using .forEach and print out the specified information about each one.
 // start loop here
