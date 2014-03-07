@@ -21,14 +21,24 @@ class Filestore {
      */
     private function read_lines()
     {
-
+        
+        $handle = fopen($this->filename, "r");
+        $contents = fread($handle, filesize($this->filename));
+        $contents_array = explode("\n", $contents);
+        fclose($handle);
+        return $contents_array;
     }
 
     /**
      * Writes each element in $array to a new line in $this->filename
      */
-    private function write_lines($array)
+    private function write_lines($new_items)
     {
+        $handle = fopen($this->filename, 'w');
+        //foreach ($new_items as $new_item) {
+        fwrite($handle, implode("\n", $new_items));
+        //}
+        fclose($handle);
 
     }
 
