@@ -59,11 +59,10 @@ if (isset($_GET['remove'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Address Book</title>
-<link rel="stylesheet" type="text/css" href="theme.css">
+    <title>Address Book</title>
 
     <!-- Bootstrap -->
-    <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
