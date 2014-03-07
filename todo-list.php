@@ -2,34 +2,30 @@
 /**
 * class extends Exception class to present custom exception
 */
-class UnexpectedTypeException extends Exception{}
+require_once('filestore.php');
 
 $filename = 'data/list.txt';
+
+$todo = new Filestore($filename);
+
+class UnexpectedTypeException extends Exception{}
 
 $default = "You have no items!";
 
 //set function to write to $filename
-function view_file($target_file) {
+// function view_file($target_file) {
 
-    $handle = fopen($target_file, "r");
-    $contents = fread($handle, filesize($target_file));
-    $contents_array = explode("\n", $contents);
-    fclose($handle);
-    return $contents_array;
-}
+    
+// }
 
 // save items to file
-function save_file($target_file, $new_items) {
+// function save_file($target_file, $new_items) {
 
-    $handle = fopen($target_file, 'w');
-    //foreach ($new_items as $new_item) {
-    fwrite($handle, implode("\n", $new_items));
-    //}
-    fclose($handle);
-}
+    
+// }
 
 // confer identity of items to the loaded text file
-$items = (filesize($filename) > 0) ? view_file($filename) : array();
+$items = (filesize($filename) > 0) ? $todo->open() : array();
 
 // check if the assignment to the Post array is an array
 // try/catch to message back exception
@@ -46,7 +42,7 @@ $items = (filesize($filename) > 0) ? view_file($filename) : array();
       }
       $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
       array_push($items, $item);
-      save_file($filename, $items);
+      write($filename, $items);
       header("Location: todo-list.php");
       exit(0);
     }
@@ -63,7 +59,7 @@ $items = (filesize($filename) > 0) ? view_file($filename) : array();
   if (isset($_GET['remove'])) {
       $itemId = $_GET['remove'];
       unset($items[$itemId]);
-      save_file($filename, $items);
+      write($filename, $items);
       header("Location: todo-list.php");
       exit(0);
     }
@@ -79,13 +75,13 @@ $items = (filesize($filename) > 0) ? view_file($filename) : array();
     // Move the file from the temp location to our uploads directory
     move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
 
-    $new_items = view_file($saved_filename);
+    $new_items = open($saved_filename);
     //if the checkbox returns true
     //set items array to file array ($new_items)
     
     $items = (isset($_POST['override'])) ? $new_items : array_merge($items, $new_items);
    
-    save_file($filename, $items);
+    write($filename, $items);
     header("Location: todo-list.php");
     exit(0);
 
