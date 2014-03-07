@@ -1,0 +1,56 @@
+  #main-header {
+    
+  }
+
+  div {
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  border: dotted 1px #000;
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  background-color: #FFF;
+  margin-top: 50px;
+  margin-right: 50px;
+  position:relative;
+  float: left;
+  }
+
+  #ribbon {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  }
+
+  #redbox {
+    background-color: #F00;
+  }
+
+  #orangebox {
+    background-color: orange;
+  }
+
+  #yellowbox {
+    background-color: yellow;
+    color: #CCC;
+  }
+
+  #greenbox {
+    background-color: #0F0;
+    clear:left;
+  }
+
+  #bluebox {
+    background-color: #00F;
+  }
+
+  #violetbox {
+    background-color: violet;
+  }
+
+  div>img {
+  position: absolute;
+  left: 50px;
+  bottom: 60px;
+  }
