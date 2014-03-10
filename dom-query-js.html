@@ -33,14 +33,26 @@
 
         // todo: get all list items
         var listItems = document.getElementsByTagName('li');
+        //console.log(listItems);
 
         // todo: set text color on every other list item to grey
         // todo: set text color of li with dbid = 1 to blue
+        for (var i = 0; i < listItems.length; i++) {
+            var dbId = listItems[i].attributes['data-dbid'].value;
+            // console.log(dbId);
+            if (i % 2 != 0) {
+                listItems[i].style['color'] = "grey";
+            } else if (dbId == 1) {
+                listItems[i].style['color'] = "blue";
+            };
+        };
 
         // todo: get all elements with class name sub-paragraph
-        // var subParagraphs = ;
+        var subParagraphs = document.getElementsByClassName('sub-paragraph');
+
 
         // todo: change the text in the first sub paragraph to "Mission Accomplished!"
+        subParagraphs[0].innerHTML = "Ullamco flexitarian VHS shabby chic, Banksy you probably haven't heard of them lomo sriracha. Accusamus umami Etsy, twee kitsch magna irony master cleanse in meggings plaid lo-fi flexitarian labore. Kitsch kogi Pitchfork actually irure selvage. Excepteur fixie wayfarers, raw denim put a bird on it aliquip fap dreamcatcher readymade Pinterest Odd Future. Pug organic Echo Park wolf, semiotics +1 fanny pack Banksy fashion axe flannel pariatur photo booth umami aliqua. Hashtag organic keffiyeh, nesciunt hella vegan Pinterest four loko. Occaecat aliqua cupidatat, cornhole Intelligentsia leggings Pinterest jean shorts synth.";
 
     </script>
 
