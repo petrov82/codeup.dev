@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>DOM: Query and Modify</title>
+</head>
+<body>
+
+    <h1 id="main-header">Hello World!</h1>
+    <ul>
+        <li data-dbid="1">Item 1</li>
+        <li data-dbid="2">Item 2</li>
+        <li data-dbid="3">Item 3</li>
+        <li data-dbid="4">Item 4</li>
+        <li data-dbid="5">Item 5</li>
+    </ul>
+    <h2 id="sub-header">Hello Again.</h2>
+    <p class="sub-paragraph">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+
+    <script>
+
+        // todo: get the main header element by id
+         var mainHeader = document.getElementById('main-header');
+         //console.log(mainHeader);
+
+        // todo: set inner html of mainHeader to "JavaScript is Cool"
+        mainHeader.innerHTML = "JavaScript is Cool";
+
+        // todo: get the sub header element by id
+        var subHeader = document.getElementById("sub-header");
+        //console.log(subHeader);
+
+        // todo: set the text color of subHeader to blue
+        subHeader.style['color'] = 'blue';
+
+        // todo: get all list items
+        var listItems = document.getElementsByTagName('li');
+
+        // todo: set text color on every other list item to grey
+        // todo: set text color of li with dbid = 1 to blue
+
+        // todo: get all elements with class name sub-paragraph
+        // var subParagraphs = ;
+
+        // todo: change the text in the first sub paragraph to "Mission Accomplished!"
+
+    </script>
+
+</body>
+</html>
