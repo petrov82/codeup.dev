@@ -1,0 +1,26 @@
+<h1 id="main-heading">Hello World!</h1>
+<div id="main-section">
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+</div>
+<script>
+
+// get the main heading h1 by id
+var mainHeading = document.getElementById('main-heading');
+
+console.log(mainHeading.innerHTML); // prints Hello World!
+
+// assign a new value to the inner HTML of the main heading
+mainHeading.innerHTML = "Hello Codeup!";
+
+console.log(mainHeading.innerHTML); // prints Hello Codeup!
+
+// get the main section div by id
+var mainSection = document.getElementById('main-section');
+
+console.log(mainSection.innerHTML);
+//prints
+// <p>Paragraph 1</p>
+// <p>Paragraph 2</p>
+
+</script>
