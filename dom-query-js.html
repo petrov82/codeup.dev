@@ -4,37 +4,35 @@
 </head>
 <body>
 
-    <h1 id="main-header">Hello World!</h1>
+    <h1 id="main-header">Hello World! </h1><button id="btn1">How I feel about JS</button>
     <ul>
         <li data-dbid="1">Item 1</li>
         <li data-dbid="2">Item 2</li>
         <li data-dbid="3">Item 3</li>
         <li data-dbid="4">Item 4</li>
         <li data-dbid="5">Item 5</li>
-    </ul>
-    <h2 id="sub-header">Hello Again.</h2>
-    <p class="sub-paragraph">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+    </ul><button id="btn2">Make this Pretty</button>
+    <h2 id="sub-header">Hello Again.</h2><button id="btn3">More Pretty</button>
+    <p class="sub-paragraph">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p><button id="btn4">Make this Lorem Hipster</button>
 
     <script>
 
-        // todo: get the main header element by id
+        // 1 todo: get the main header element by id
          var mainHeader = document.getElementById('main-header');
          //console.log(mainHeader);
-
+        var btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click', function(){
         // todo: set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML = "JavaScript is Cool";
+            mainHeader.innerHTML = "JavaScript is Cool";
+        }, false);
 
-        // todo: get the sub header element by id
-        var subHeader = document.getElementById("sub-header");
-        //console.log(subHeader);
+        
 
-        // todo: set the text color of subHeader to blue
-        subHeader.style['color'] = 'blue';
-
-        // todo: get all list items
+        // 2 todo: get all list items
         var listItems = document.getElementsByTagName('li');
         //console.log(listItems);
-
+        var btn2 = document.getElementById('btn2');
+        btn2.addEventListener('click', function(){
         // todo: set text color on every other list item to grey
         // todo: set text color of li with dbid = 1 to blue
         for (var i = 0; i < listItems.length; i++) {
@@ -45,14 +43,24 @@
             } else if (dbId == 1) {
                 listItems[i].style['color'] = "blue";
             };
-        };
+        }; }, false);
 
-        // todo: get all elements with class name sub-paragraph
+        // 3 todo: get the sub header element by id
+        var subHeader = document.getElementById("sub-header");
+        //console.log(subHeader);
+        var btn3 = document.getElementById('btn3');
+        btn3.addEventListener('click', function(){
+        // todo: set the text color of subHeader to blue
+            subHeader.style['color'] = 'blue';
+        }, false);
+
+        // 4 todo: get all elements with class name sub-paragraph
         var subParagraphs = document.getElementsByClassName('sub-paragraph');
-
-
+        var btn4 = document.getElementById('btn4');
+        btn4.addEventListener('click', function(){
         // todo: change the text in the first sub paragraph to "Mission Accomplished!"
         subParagraphs[0].innerHTML = "Ullamco flexitarian VHS shabby chic, Banksy you probably haven't heard of them lomo sriracha. Accusamus umami Etsy, twee kitsch magna irony master cleanse in meggings plaid lo-fi flexitarian labore. Kitsch kogi Pitchfork actually irure selvage. Excepteur fixie wayfarers, raw denim put a bird on it aliquip fap dreamcatcher readymade Pinterest Odd Future. Pug organic Echo Park wolf, semiotics +1 fanny pack Banksy fashion axe flannel pariatur photo booth umami aliqua. Hashtag organic keffiyeh, nesciunt hella vegan Pinterest four loko. Occaecat aliqua cupidatat, cornhole Intelligentsia leggings Pinterest jean shorts synth.";
+        }, false);
 
     </script>
 

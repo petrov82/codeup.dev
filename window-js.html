@@ -1,10 +1,16 @@
 <html>
 <head>
     <title>Delayed Autosave</title>
+    <style type="text/css">
+    #message {
+        color: #969696;
+        font-style: oblique;
+    }
+    </style>
 </head>
 <body>
 
-    <h2>Autosaving Text Input</h2>
+    <h2>Type Your Thoughts</h2>
     <textarea rows="10" cols="60" id="important"></textarea>
     <div id="message"></div>
 
@@ -12,7 +18,7 @@
     var delay = 5000;
     var timeoutID;
     
-
+        //set "saved" notification to text under box. Ellipses used to indicated editing mode.
         function save() {
             var notifier = 'Saved';
             setMessage(notifier);
@@ -27,24 +33,16 @@
             messageSaved.innerHTML = test;
             console.log(messageSaved.innerHTML);
         }
-
+        // todo:
+        // Use setTimeout and clearTimeout within this function
+        // so that the save() function is called 5 seconds after
+        // the last key up event. If a new key up event occurs,
+        // you need to cancel the existing timer and set a new one.
         function autosave(e) {
             console.log(e);
             window.clearTimeout(timeoutID);
             timeoutID = window.setTimeout(save, delay);
         }
-
-            // todo:
-            // Use setTimeout and clearTimeout within this function
-            // so that the save() function is called 5 seconds after
-            // the last key up event. If a new key up event occurs,
-            // you need to cancel the existing timer and set a new one.
-
-        // window.onkeydown = keydown;
-        // function keydown(){
-        //     timeoutID = window.setTimeout(function(){
-        //         setMessage("...");
-        // }
     
         // don't modify the line below
         // this causes the autosave function to be called whenever
@@ -52,10 +50,7 @@
         // we will learn about events in the DOM lessons
         var textarea = document.getElementById('important');
         textarea.addEventListener('keyup', autosave, false);
-        
-        message.style['color'] = "grey";
-        message.style['font-style'] = "oblique";
-        
+        textarea.addEventListener('keydown', autosave, false);
 
     </script>
 
