@@ -6,21 +6,33 @@
 
     <h2>Autosaving Text Input</h2>
     <textarea rows="10" cols="60" id="important"></textarea>
+    <div id="message"></div>
 
     <script>
     var delay = 5000;
     var timeoutID;
+    
 
         function save() {
-            alert('Saved!');
+            var notifier = 'Saved';
+            setMessage(notifier);
+            timeoutID = window.setTimeout(function(){
+                setMessage("...");
+
+            }, delay);
+        }
+
+        function setMessage(test) {
+            var messageSaved = document.getElementById("message");
+            messageSaved.innerHTML = test;
+            console.log(messageSaved.innerHTML);
         }
 
         function autosave(e) {
             console.log(e);
-
             window.clearTimeout(timeoutID);
             timeoutID = window.setTimeout(save, delay);
-            
+        }
 
             // todo:
             // Use setTimeout and clearTimeout within this function
@@ -28,14 +40,22 @@
             // the last key up event. If a new key up event occurs,
             // you need to cancel the existing timer and set a new one.
 
-        }
-
+        // window.onkeydown = keydown;
+        // function keydown(){
+        //     timeoutID = window.setTimeout(function(){
+        //         setMessage("...");
+        // }
+    
         // don't modify the line below
         // this causes the autosave function to be called whenever
         // a key up event occurs in the textarea
         // we will learn about events in the DOM lessons
         var textarea = document.getElementById('important');
         textarea.addEventListener('keyup', autosave, false);
+        
+        message.style['color'] = "grey";
+        message.style['font-style'] = "oblique";
+        
 
     </script>
 
