@@ -12,45 +12,34 @@ class UnexpectedTypeException extends Exception{}
 
 $default = "You have no items!";
 
-//set function to write to $filename
-// function view_file($target_file) {
-
-    
-// }
-
-// save items to file
-// function save_file($target_file, $new_items) {
-
-    
-// }
-
 // confer identity of items to the loaded text file
 $items = (filesize($filename) > 0) ? $todo->open() : array();
 
 // check if the assignment to the Post array is an array
 // try/catch to message back exception
+$error = "";
+
   try {
     if (isset($_POST['assignment'])) {
-      if ($_POST['assignment'] == "") {
-        throw new Exception("Error Processing Request. Go Back to undo. You must input something.");
-      }
-      elseif (strlen($_POST['assignment']) > 240) {
+        if ($_POST['assignment'] == "") {
+            throw new Exception("Error Processing Request. Go Back to undo. You must input something.");
+        } elseif (strlen($_POST['assignment']) > 240) {
           throw new Exception("Error Processing Request. Go Back to undo. Use 240 characters or less.");
+        } elseif (!is_string($_POST['assignment'])) {
+          throw new UnexpectedTypeException('$item must be a string');
+          }
+
+        $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
+        array_push($items, $item);
+        $todo->write($items);
+        // header("Location: todo-list.php");
+        // exit(0);
       }
-      elseif (!is_string($_POST['assignment'])) {
-        throw new UnexpectedTypeException('$item must be a string');
-      }
-      $item = htmlspecialchars(htmlentities(strip_tags($_POST['assignment'])));
-      array_push($items, $item);
-      write($filename, $items);
-      header("Location: todo-list.php");
-      exit(0);
-    }
-  } catch (UnexpectedTypeException $ex) {
-      $wrongType = "<p>Error Processing Request. You must input words. These abstractions have no place here.</p>";
-  } catch (Exception $e) {
-       $catch = "<p>Error Processing Request. You must input something, or use 240 characters or <strong>less</strong>.</p>";
-  }
+    } catch (UnexpectedTypeException $ex) {
+      $error = "<p>Error Processing Request. You must input words. These abstractions have no place here.</p>";
+    } catch (Exception $e) {
+       $error = "<p>Error Processing Request. You must input something, or use 240 characters or <strong>less</strong>.</p>";
+        }
     
    
   
@@ -59,7 +48,7 @@ $items = (filesize($filename) > 0) ? $todo->open() : array();
   if (isset($_GET['remove'])) {
       $itemId = $_GET['remove'];
       unset($items[$itemId]);
-      write($filename, $items);
+      $todo->write($items);
       header("Location: todo-list.php");
       exit(0);
     }
@@ -75,15 +64,15 @@ $items = (filesize($filename) > 0) ? $todo->open() : array();
     // Move the file from the temp location to our uploads directory
     move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
 
-    $new_items = open($saved_filename);
+    $new_items = $todo->open($saved_filename);
     //if the checkbox returns true
     //set items array to file array ($new_items)
     
     $items = (isset($_POST['override'])) ? $new_items : array_merge($items, $new_items);
    
-    write($filename, $items);
-    header("Location: todo-list.php");
-    exit(0);
+    $todo->write($items);
+    // header("Location: todo-list.php");
+    // exit(0);
 
   }
 
@@ -150,8 +139,7 @@ $items = (filesize($filename) > 0) ? $todo->open() : array();
           <label for="assignment">New Item</label>
           <input id="assignment" name="assignment" type="text" autofocus='autofocus' placeholder="Item to do...">
       </p>
-      <?= $catch ?>
-      <?= $wrongType ?>
+      <p><?= isset($error) ? $error : ""; ?></p>
       <p><?= empty($items) ? $default : "" ; ?></p>
       <p>
           <input type="submit" name="submit" value="Add Item">
@@ -159,9 +147,7 @@ $items = (filesize($filename) > 0) ? $todo->open() : array();
   </form>
 
     <ul>
-      <?
-      // cull thru items array and list each item with assigned keys
-      foreach ($items as $key => $item): ?>
+      <? foreach ($items as $key => $item): ?>
         <li><?= htmlspecialchars(htmlentities(strip_tags($item))) ?>  |<a href=?remove=<?=$key?> > Remove Item</a></li>
       <? endforeach; ?>
   </ul>
