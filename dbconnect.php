@@ -11,6 +11,5 @@
 	if ($mysqli->connect_errno) {
 	    throw new Exception('Failed to connect to MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
 	}// Retrieve a result set using SELECT
-	
 
 ?>
