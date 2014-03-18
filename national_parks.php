@@ -1,15 +1,37 @@
 <?php
-// 1 target database array
-// 2 display array
-// 3 allow for organization ASC or DESC
+  // 1 target database array
+  // 2 display array
+  // 3 allow for organization ASC or DESC
+  // 4 protect GET request from sql injection
 require_once("dbconnect.php");
 
-$sortCol = (!empty($_GET['sort_column'])) ? $_GET['sort_column'] : 'name';
-$sortOrder = (!empty($_GET['sort_order'])) ? $_GET['sort_order'] : 'asc';
+$acceptable = array('name', 'location', 'date_established', 'area_in_acres', 'description');
+
+$sortCol = (!empty($_GET['sort_column']) && in_array($_GET['sort_column'], $acceptable, true)) ? $_GET['sort_column'] : 'name';
+$sortOrder = (!empty($_GET['sort_order']) || $_GET == 'desc') ? $_GET['sort_order'] : 'asc';
+
+if (!empty($_POST)) {
+
+  $stmt = $mysqli->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
+                            VALUES (?, ?, ?, ?, ?)");
+
+  if(!$stmt) {
+    throw new Exception('OH NOES! ' . $mysqli->error);
+  }
+
+  $stmt->bind_param("sssds", $_POST['name'], $_POST['location'], $_POST['date_established'], $_POST['area_in_acres'], $_POST['description']);
+
+  $stmt->execute();
+
+#//use to show code below//  $stmt->bind_result($name, $location, $date_established, $area_in_acres, $description);
+}
 
 $result = $mysqli->query("SELECT name, location, date_established, area_in_acres, description
                           FROM national_parks
                           ORDER BY $sortCol $sortOrder");
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +52,7 @@ $result = $mysqli->query("SELECT name, location, date_established, area_in_acres
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
 </head>
 <body>
   <div class="container-fluid">
@@ -77,20 +100,45 @@ $result = $mysqli->query("SELECT name, location, date_established, area_in_acres
      </tr>
 <?
  // Use print_r() to show rows using MYSQLI_ASSOC
-  while ($parks = $result->fetch_assoc()) {
+//  while ($stmt->fetch()) {
    //   print_r($parks);
+while ($parks = $result->fetch_assoc()) {
   
-		  echo "<tr>";
-			echo "<td>{$parks['name']}</td>";
-			echo "<td>{$parks['location']}</td>";
-			echo "<td>{$parks['date_established']}</td>";
-			echo "<td>{$parks['area_in_acres']}</td>";
-			echo "<td>{$parks['description']}</td>";
+		  echo "<td>{$parks['name']}</td>";
+      echo "<td>{$parks['location']}</td>";
+      echo "<td>{$parks['date_established']}</td>";
+      echo "<td>{$parks['area_in_acres']}</td>";
+      echo "<td>{$parks['description']}</td>";
       echo "</tr>";
     }
 ?>
 	
 	</table>
+  <form role="form" method="POST" enctype="multipart/form-data" action="" >
+    <div class="form-group">
+          <input id="name" name="name" type="text" autofocus='autofocus' placeholder="Enter Park Name" required>
+          <label for="name">Name</label>
+      </div>
+      <div class="form-group">
+          <input id="location" name="location" type="text" placeholder="e.g. TX" required>
+          <label for="location">Location</label>
+      </div>
+      <div class="form-group">
+          <input id="date_established" name="date_established" type="text" placeholder="YYYY-MM-DD" required>
+          <label for="date_established">Date Established</label>
+      </div>
+      <div class="form-group">
+          <input id="area_in_acres" name="area_in_acres" type="text" placeholder="Numbers Only" required>
+          <label for="area_in_acres">Area in Acres</label>
+      </div>
+      <div class="form-group">
+          <textarea class="form-control" rows="5" id="description" name="description" placeholder="Enter a description" style="width: 50%;" required></textarea>
+          <label for="description"><br>Description</label>
+      </div>
+      <p>
+          <button type="button" class="btn btn-info">Add Info</button>
+      </p>
+  </form>
 	<br>
 	<hr>
 
