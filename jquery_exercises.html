@@ -21,6 +21,7 @@
 		</article>
 	</div>
 	<div class="container">
+		<small>Double-Click to enlarge text</small>
 		<p>
 			<small id="noteup1">* Marfa slow-carb fanny pack gentrify pork belly. Meggings raw denim drinking vinegar Shoreditch.</small>
 		</p>
@@ -36,10 +37,28 @@
 
 	<script src="/js/jquery.js"></script>
 	<script type="text/javascript">
-			$('li').css("font-size", "20px");
-			$('h1, p, li').css("background-color", "#FF0");
-			var contents = $('h1').html();
-			alert(contents);
+			$('document').ready(function() {
+            $('#codeup').click(function() {
+                $(this).css('background-color', '#0FF');
+            });
+        });
+
+			$('document').ready(function() {
+            $('p').dblclick(function() {
+                $(this).css('font-size', '18px');
+            });
+        });
+
+			$('document').ready(function() {
+            $('li').hover(
+                function() {
+                    $(this).css('background-color', '#0FF');
+                },
+                function() {
+                    $(this).css('background-color', '#FFF');
+                }
+            );
+        });
 	</script>
 </body>
 </html>
