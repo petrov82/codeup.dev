@@ -1,26 +1,18 @@
-<h1 id="main-heading">Hello World!</h1>
-<div id="main-section">
-    <p>Paragraph 1</p>
-    <p>Paragraph 2</p>
-</div>
-<script>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Test</title>
 
-// get the main heading h1 by id
-var mainHeading = document.getElementById('main-heading');
-
-console.log(mainHeading.innerHTML); // prints Hello World!
-
-// assign a new value to the inner HTML of the main heading
-mainHeading.innerHTML = "Hello Codeup!";
-
-console.log(mainHeading.innerHTML); // prints Hello Codeup!
-
-// get the main section div by id
-var mainSection = document.getElementById('main-section');
-
-console.log(mainSection.innerHTML);
-//prints
-// <p>Paragraph 1</p>
-// <p>Paragraph 2</p>
-
-</script>
+	<script src="/js/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var contents = jQuery('#codeup').html();
+			alert(contents);
+});</script>
+</head>
+<body>
+	<h1 id="codeup">Hello CodeUp</h1>
+	<h2 id="codeup">Goodbye, CodeUp</h2>
+</body>
+</html>
