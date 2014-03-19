@@ -7,25 +7,36 @@
 	<script src="/js/jquery.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var contents = jQuery('#codeup').html();
-			alert(contents);
+			$('.codeup, #codeup, h2').css("border", "solid 1px #F00");
+			
 });</script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-		<h1 id="codup">Hello CodeUp</h1>
-		<h2 id="codeup">CodeUp: The Lorem Storum</h2>
-		<ol>
+		<h1 id="codeup">Hello CodeUp</h1>
+		<h2 class="lead">CodeUp: The Lorem Storum</h2>
+		<ol class="codeup">
 			<li>Quis iPhone organic Tumblr anim, umami meh hashtag disrupt cupidatat food truck salvia.</li>
 			<li>Chillwave flannel umami authentic fugiat you probably haven't heard of them, PBR&amp;B Shoreditch Brooklyn id quis Tumblr sartorial.</li>
 			<li>Small batch adipisicing whatever semiotics pariatur locavore gluten-free, freegan deserunt Echo Park pork belly elit.</li>
 		</ol>
 	</div>
 	<div class="container">
-		<article>
-			Pug craft beer anim Echo Park flannel mlkshk swag, Odd Future bitters fap consectetur roof party aliquip ethical. Magna quis consequat PBR McSweeney's. Semiotics tofu mlkshk Tonx, Pinterest art party consequat hella pour-over fap mollit occupy McSweeney's tempor raw denim. Brooklyn +1 Banksy laboris. Distillery Echo Park plaid velit. Vice aesthetic nihil, culpa exercitation flexitarian Blue Bottle Bushwick kogi aliquip velit. Jean shorts dreamcatcher street art shabby chic trust fund Vice.
+		<article class="lead">
+			Pug craft beer anim Echo Park flannel* mlkshk swag, Odd Future bitters fap consectetur roof party aliquip ethical. Magna quis consequat PBR McSweeney's. Semiotics tofu mlkshk Tonx, Pinterest art party consequat hella pour-over fap mollit occupy McSweeney's tempor raw denim. Brooklyn +1 Banksy laboris. Distillery Echo Park plaid velit. Vice** aesthetic nihil, culpa exercitation flexitarian Blue Bottle Bushwick kogi aliquip velit. Jean shorts*** dreamcatcher street art shabby chic trust fund Vice.
 		</article>
+	</div>
+	<div class="container">
+		<p>
+			<small class="codeup">* Marfa slow-carb fanny pack gentrify pork belly. Meggings raw denim drinking vinegar Shoreditch.</small>
+		</p>
+		<p>
+			<small class="codeup">** Hoodie cardigan Pitchfork, jean shorts gluten-free church-key mixtape vegan 8-bit twee Wes Anderson bitters banjo. Skateboard Godard craft beer, biodiesel chia disrupt sustainable Helvetica Etsy cliche synth next level kitsch paleo sartorial.</small> 
+		</p>
+		<p>
+			<small class="codeup">*** Cosby sweater irony keffiyeh, meh banjo fashion axe raw denim sustainable Williamsburg authentic cred Intelligentsia locavore Pitchfork tote bag. Post-ironic Pinterest deep v, selfies hashtag Odd Future Austin sustainable kogi stumptown. Occupy PBR&B Carles YOLO, fixie quinoa small batch slow-carb Cosby sweater lo-fi.</small>
+		</p>
 	</div>
 </body>
 </html>
