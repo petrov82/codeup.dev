@@ -4,6 +4,11 @@
 	<meta charset="UTF-8">
 	<title>jQuery Test</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<style>
+  .noteup-dbl {
+    font-size: 1.5em;
+	}
+  </style>
 </head>
 <body>
 	<div class="container">
@@ -21,15 +26,15 @@
 		</article>
 	</div>
 	<div class="container">
-		<small>Double-Click to enlarge text</small>
+		<small>Click to toggle text-size</small>
 		<p>
-			<small id="noteup1">* Marfa slow-carb fanny pack gentrify pork belly. Meggings raw denim drinking vinegar Shoreditch.</small>
+			<small class="noteup">* Marfa slow-carb fanny pack gentrify pork belly. Meggings raw denim drinking vinegar Shoreditch.</small>
 		</p>
 		<p>
-			<small id="noteup2">** Hoodie cardigan Pitchfork, jean shorts gluten-free church-key mixtape vegan 8-bit twee Wes Anderson bitters banjo. Skateboard Godard craft beer, biodiesel chia disrupt sustainable Helvetica Etsy cliche synth next level kitsch paleo sartorial.</small> 
+			<small class="noteup">** Hoodie cardigan Pitchfork, jean shorts gluten-free church-key mixtape vegan 8-bit twee Wes Anderson bitters banjo. Skateboard Godard craft beer, biodiesel chia disrupt sustainable Helvetica Etsy cliche synth next level kitsch paleo sartorial.</small> 
 		</p>
 		<p>
-			<small id="noteup3">*** Cosby sweater irony keffiyeh, meh banjo fashion axe raw denim sustainable Williamsburg authentic cred Intelligentsia locavore Pitchfork tote bag. Post-ironic Pinterest deep v, selfies hashtag Odd Future Austin sustainable kogi stumptown. Occupy PBR&B Carles YOLO, fixie quinoa small batch slow-carb Cosby sweater lo-fi.</small>
+			<small class="noteup">*** Cosby sweater irony keffiyeh, meh banjo fashion axe raw denim sustainable Williamsburg authentic cred Intelligentsia locavore Pitchfork tote bag. Post-ironic Pinterest deep v, selfies hashtag Odd Future Austin sustainable kogi stumptown. Occupy PBR&B Carles YOLO, fixie quinoa small batch slow-carb Cosby sweater lo-fi.</small>
 		</p>
 	</div>
 
@@ -43,11 +48,9 @@
             });
         });
 
-			$('document').ready(function() {
-            $('p').dblclick(function() {
-                $(this).css('font-size', '18px');
+            $('small').click(function() {
+                $(this).toggleClass('noteup-dbl');
             });
-        });
 
 			$('document').ready(function() {
             $('li').hover(
