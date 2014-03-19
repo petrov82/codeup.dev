@@ -5,11 +5,13 @@
   // 4 protect GET request from sql injection
 require_once("dbconnect.php");
 
+// array of acceptable labels for sorting
 $acceptable = array('name', 'location', 'date_established', 'area_in_acres', 'description');
-
+// sorting variables and their rules
 $sortCol = (!empty($_GET['sort_column']) && in_array($_GET['sort_column'], $acceptable, true)) ? $_GET['sort_column'] : 'name';
 $sortOrder = (!empty($_GET['sort_order']) || $_GET == 'desc') ? $_GET['sort_order'] : 'asc';
 
+// add items into database
 if (!empty($_POST)) {
 
   $stmt = $mysqli->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
@@ -25,7 +27,7 @@ if (!empty($_POST)) {
 
 #//use to show code below//  $stmt->bind_result($name, $location, $date_established, $area_in_acres, $description);
 }
-
+// show items from database
 $result = $mysqli->query("SELECT name, location, date_established, area_in_acres, description
                           FROM national_parks
                           ORDER BY $sortCol $sortOrder");
@@ -136,7 +138,7 @@ while ($parks = $result->fetch_assoc()) {
           <label for="description"><br>Description</label>
       </div>
       <p>
-          <button type="button" class="btn btn-info">Add Info</button>
+          <button type="submit" class="btn btn-info">Add Info</button>
       </p>
   </form>
 	<br>
