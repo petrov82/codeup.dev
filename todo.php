@@ -41,13 +41,8 @@ $offset = $currentPage;
 $todo = $mysqli->query("SELECT id, item
                           FROM todos
                           ORDER BY $sortCol $sortOrder");
-
-
-
 ?>
-
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -79,8 +74,6 @@ $todo = $mysqli->query("SELECT id, item
   </p>
   <hr/>
 
-
-
 <a href="#" class="pull-left">Previous</a> <a href="#" class="pull-right">Next</a>
 
 
@@ -103,9 +96,7 @@ $todo = $mysqli->query("SELECT id, item
 			echo $alert;
 			// unset alert
 			unset($alert);
-
 		}
-
 
 		while ($items = $todo->fetch_assoc()): ?>
 		  <tr>
@@ -114,7 +105,6 @@ $todo = $mysqli->query("SELECT id, item
 				</tr>
 		    <? endwhile; ?>
 	</table>
-
 	<!-- Remove form post -->
 	<form id="removeForm" action="todo.php" method="POST">
 		<input id="removeId" type="hidden" name="remove" value="">
@@ -127,8 +117,6 @@ $todo = $mysqli->query("SELECT id, item
 			form.submit();
 		}
 	</script>
-
-
   <form role="form" method="POST" enctype="multipart/form-data" action="" >
     <div class="form-group">
           <input id="item" name="item" type="text" autofocus='autofocus' placeholder="Item to do...">
@@ -136,10 +124,9 @@ $todo = $mysqli->query("SELECT id, item
       </div>
           <button type="submit" class="btn btn-info">Add Info</button>
   </form>
-
 	<br>
 	<hr>
-
+  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
