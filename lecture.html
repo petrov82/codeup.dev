@@ -10,10 +10,57 @@
 			$('#codeup').hover(
 				);
 			console.log($(this).html);
-});</script>
+});
+
+
+	</script>
 </head>
 <body>
 	<h1 id="codeup">Hello CodeUp</h1>
 	<h2 id="codeup">Goodbye, CodeUp</h2>
+
+<h3>LAMP Items</h3>
+<ul id="lamp-items">
+    <li>Linux</li>
+    <li>Apache</li>
+    <li>MySQL</li>
+    <li>PHP</li>
+    <li>Javascript</li>
+</ul>
+
+<h3>National Parks</h3>
+<ul id="national-parks">
+    <li>Arches</li>
+    <li>Badlands</li>
+    <li>Carlsbad Caverns</li>
+    <li>Denali</li>
+    <li>Everglades</li>
+</ul>
+<h3>State Parks of Texas</h3>
+<ul id="state-parks-texas">
+    <li>Abilene</li>
+    <li>Big Bend</li>
+    <li>Choke Canyon</li>
+    <li>Davis Mountains</li>
+    <li>Enchanted Rock</li>
+</ul>
+	<script type="text/javascript">
+		// $('li').each(function(index) {
+		//     if (index % 2 == 0) {
+		//         $(this).css('background-color', '#FF0');
+		//     }
+		// });
+
+		//$('li').first().css('background-color', '#FF0');
+
+		//$('#national-parks').children().css('font-weight', 'bold');
+
+
+		$('#lamp-items').children().each(function(index) {
+			if (index % 2 == 0) {
+				($this).css('background-color', '#DDD');
+			})};
+
+	</script>
 </body>
 </html>

@@ -21,11 +21,41 @@
 	</div>
 	<div class="container-fluid">
 		<article class="lead">We realize that there is a lot to know about the United States National Parks. That is why we decided to provide this service.</article>
+
+	<h2><small>Facts Before FAQs</small></h2>
+	<h3 class="clickable">Arches</h3>
+	<ul id="arches">
+		<li>The Namesake of CodeUp's first cohort</li>
+		<li>It's in a desert</li>
+		<li>It's mostly rocks that are shaped like literal arches</li>
+		<li>Still doesn't compare to Trajan's Arch</li>
+		<li>Probably prettier that the Roman Aqueduct.</li>
+	</ul>
+	<h3 class="clickable">Enchanted Rock</h3>
+	<ul id="erock">
+		<li>It's really filled with enchantment.</li>
+		<li>The Enchanter, Tim onced lived here.</li>
+		<li>He moved back to Scotland to live with his Moose.</li>
+		<li>He abandoned his llama at Enchanted Rock.</li>
+		<li>That llama now lives somewhere in the caves.</li>
+	</ul>
+	<h3 class="clickable">Friedrich Park</h3>
+	<ul id="fpark">
+		<li>There is nothing funny about Friedrich Park</li>
+		<li>Well, it has a funny name.</li>
+		<li>If you really try to say it with a German accent, it sounds like you're hawking a loogie.</li>
+		<li>Lulz, loogie.</li>
+		<li>It's also a great place to hike.</li>
+	</ul>
+
+
+		<h2><small>Just the FAQs, Ma'am.</small></h2>
+
 		<dl>
 			<dt class="clickable"><strong>Why are there so many Parks?</strong></dt>
 				<dd class="invisible"><em>There is a lot of land here in the good ole US of A, and that means there is a lot of beauty and animal life people like to protect from those who don't like beauty. Have you heard of John Muir?</em> </dd>
 			<dt class="clickable"><strong>Who is John Muir?</strong></dt>
-	   			<dd class="invisible"><em>*Sigh* <a href="http://www.sierraclub.org/john_muir_exhibit/life/muir_biography.aspx">Read this,</a> and <a href="http://www.shoppbs.org/family/index.jsp?categoryId=3710203">watch this</a>.</em></dd>
+	   			<dd class="invisible"><em>*Sigh* <a href="http://www.sierraclub.org/john_muir_exhibit/life/muir_biography.aspx" target="_blank">Read this,</a> and <a href="http://www.shoppbs.org/family/index.jsp?categoryId=3710203" target="_blank">watch this</a>.</em></dd>
 		</dl>
 	</div>
 
@@ -33,12 +63,28 @@
 	<!--jQuery!!-->
 	<script src="/js/jquery.js"></script>
 	<script type="text/javascript">
+		
+		$('document').ready(function() {
+			$('dt').click(function () {
+				$(this).next().toggleClass('invisible');
+			});
 
-		$('dt').click(function () {
-                $(this).next().toggleClass('invisible');
-            });
+			$('h3').click(function() {
+				$(this).next().toggleClass('invisible');
+			});
 
+			$('li').click(function() {
+				$(this).parent().addClass('invisible');
+			});
 
-	</script>
+			$('ul').each(function() {
+				$(this).children().first().css('font-weight', 'bold');
+			});
+
+			// $('dd').click(function() {
+			// 	$(this).parent().addClass('invisible');
+			// });
+		});
+		</script>
 </body>
 </html>
