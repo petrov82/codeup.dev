@@ -1,0 +1,54 @@
+.clickable{
+	cursor: pointer;
+}
+
+body {
+	text-align: center;
+	background-color: #266A2E;
+}
+
+h1 {
+	color: #F8F8F8;
+	text-shadow: 1px 1px #DDD;
+}
+
+div {
+	color: #F8F8F8;
+	text-shadow: 1px 1px #DDD;
+	font-size: 1.5em;
+}
+
+#board {
+	margin: 10px auto;
+	width: 726px;
+	cursor: crosshair, auto;
+	background-color: #266A2E;
+}
+
+.box {
+	border: 1px solid black;
+	float: left;
+	width: 242px;
+	height: 208px;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 50px;
+	border-radius: 100px / 50px;
+	background-color: #471C01;
+	cursor: crosshair;
+}
+
+.mole {
+	background: url(../img/redpanda.jpg) no-repeat;
+	width: 242px;
+	height: 208px;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 50px;
+	border-radius: 100px / 50px;
+	display: none;
+}
+
+#score {
+	font-variant: small-caps;
+	font-size: 1.5em;
+
+}

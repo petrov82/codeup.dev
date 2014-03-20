@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Whack!</title>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<!-- Latest compiled and minified CSS-->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/css/whack.css">
+	
+	<!--
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+		-->
+
+</head>
+<body>
+	<h1>Whack-A-Panda</h1>
+
+	<div id="startScore" class="clickable">Start Game</div>
+	<div id="score">0</div>
+
+	<div id="board">
+
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+		<div class="box">
+			<div class="mole"></div>
+		</div>
+</div>
+
+
+
+
+	<!--jQuery!!
+	<script src="/js/jquery.js"></script> -->
+	<script type="text/javascript">
+		$(window).load(function(){
+
+			// Get holes
+			var holes = $('.box');
+
+			// Keep score
+			var score = 0;
+
+		$('#startScore').click(function() {
+			// Function to show the mole!
+			var show = function() {
+				// Fade out any moles
+				$('.mole').fadeOut();
+
+				// Get random hole
+				var rand = Math.floor(Math.random() * holes.length)
+				var hole = $(holes[rand]);
+
+				// Add mole selected hole
+				hole.children().fadeIn();
+			}
+
+			// Click event listener
+			$('.mole').click(function() { 
+				// Increase score (and show it)
+				$('#score').html(++score);
+				// Hide the mole!
+				$(this).hide();
+			});
+
+			console.log('#score');
+			// Game loop (show every n milliseconds)
+			setInterval(show, 1500);
+		});
+		});
+	</script>
+	<!--script type="text/javascript">
+
+		var holes = $('.hole');
+		var rand = Math.floor(Math.random() *holes.length);
+		$(holes[rand]).children().fadeIn();
+
+		$('img').click(function () {
+			$(this).fadeOut();
+		
+ 
+		$('img').fadeIn();
+
+		});
+
+		</script-->
+</body>
+</html>
