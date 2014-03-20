@@ -13,15 +13,12 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 		-->
 	<style type="text/css">
-		.invisible {
-			display: none;
-		}
-
+		
 		.clickable {
 			cursor: pointer;
 		}
 
-		#arches, #erock, #fpark {
+		#arches, #erock, #fpark, dd {
 			display: none;
 		}
 
@@ -46,7 +43,7 @@
 	<h3 class="clickable" id="erock-toggle">Enchanted Rock</h3>
 	<ul class="clickable" id="erock">
 		<li>It's really filled with enchantment.</li>
-		<li>The Enchanter, Tim onced lived here.</li>
+		<li>The Enchanter, Tim, onced lived here.</li>
 		<li>He moved back to Scotland to live with his Moose.</li>
 		<li>He abandoned his Llama at Enchanted Rock.</li>
 		<li>That Llama now lives somewhere in the caves.</li>
@@ -65,9 +62,17 @@
 
 		<dl>
 			<dt class="clickable"><strong>Why are there so many Parks?</strong></dt>
-				<dd class="invisible"><em>There is a lot of land here in the good ole US of A, and that means there is a lot of beauty and animal life people like to protect from those who don't like beauty. Have you heard of John Muir?</em> </dd>
+				<dd><em>There is a lot of land here in the good ole US of A, and that means there is a lot of beauty and animal life people like to protect from those who don't like beauty. Have you heard of John Muir?</em> </dd>
 			<dt class="clickable"><strong>Who is John Muir?</strong></dt>
-	   			<dd class="invisible"><em>*Sigh* <a href="http://www.sierraclub.org/john_muir_exhibit/life/muir_biography.aspx" target="_blank">Read this,</a> and <a href="http://www.shoppbs.org/family/index.jsp?categoryId=3710203" target="_blank">watch this</a>.</em></dd>
+	   			<dd><em>*Sigh* <a href="http://www.sierraclub.org/john_muir_exhibit/life/muir_biography.aspx" target="_blank">Read this,</a> and <a href="http://www.shoppbs.org/family/index.jsp?categoryId=3710203" target="_blank">watch this</a>.</em></dd>
+	   		<dt class="clickable"><strong>What can I find in a National Park?</strong></dt>
+				<dd><em>Bears, mainly. Hungry, ravenous, agitated bears with sharp teeth and long claws. You know how they say that you shouldn't get between a bear and her cubs? In the National Parks, you will constantly find yourself in that position. Good Luck.</em> </dd>
+			<dt class="clickable"><strong>What about all that beauty you mentioned?</strong></dt>
+	   			<dd><em>Oh, there is definitely beauty in each park. Mountains, streams, glacier&ndash;filled valleys (unless it's a global&ndash;warming summer), and all kinds of wildlife. But the bears&mdash;the bears are the gate&ndash;keepers</em></dd>
+	   		<dt class="clickable"><strong>If it is so dangerous to go, why do you invite people to the National Parks?</strong></dt>
+				<dd><em>Have you ever tried to reason with a Bear? Do you know what they are capable of if we do not obey?</em> </dd>
+			<dt class="clickable"><strong>Are you crazy&ndash;town?</strong></dt>
+	   			<dd><em>You have no idea...</em></dd>
 		</dl>
 	</div>
 
@@ -79,19 +84,19 @@
 		$('document').ready(function() {
 
 			$('#arches-toggle').click(function() {
-				$('#arches').toggle();
+				$('#arches').fadeToggle();
 			});
 
 			$('#erock-toggle').click(function() {
-				$('#erock').toggle();
+				$('#erock').fadeToggle();
 			});
 
 			$('#fpark-toggle').click(function() {
-				$('#fpark').toggle();
+				$('#fpark').fadeToggle();
 			});
 			
 			$('dt').click(function () {
-				$(this).next().toggleClass('invisible');
+				$(this).next().fadeToggle();
 			});
 
 			$('ul').each(function() {
