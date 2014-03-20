@@ -84,19 +84,19 @@
 		$('document').ready(function() {
 
 			$('#arches-toggle').click(function() {
-				$('#arches').fadeToggle();
+				$('#arches').slideToggle();
 			});
 
 			$('#erock-toggle').click(function() {
-				$('#erock').fadeToggle();
+				$('#erock').slideToggle();
 			});
 
 			$('#fpark-toggle').click(function() {
-				$('#fpark').fadeToggle();
+				$('#fpark').slideToggle();
 			});
 			
 			$('dt').click(function () {
-				$(this).next().fadeToggle();
+				$(this).next().slideToggle("slow");
 			});
 
 			$('ul').each(function() {
