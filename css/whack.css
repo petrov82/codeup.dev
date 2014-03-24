@@ -21,7 +21,7 @@ div {
 #board {
 	margin: 10px auto;
 	width: 726px;
-	cursor: crosshair, auto;
+	cursor: pointer, auto;
 	background-color: #266A2E;
 }
 

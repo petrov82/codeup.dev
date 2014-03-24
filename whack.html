@@ -10,7 +10,7 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/whack.css">
-	
+
 	<!--
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 		-->
@@ -21,6 +21,7 @@
 
 	<div id="startScore" class="clickable">Start Game</div>
 	<div id="score">0</div>
+	<div id="seconds">30</div>
 
 	<div id="board">
 
@@ -69,8 +70,27 @@
 			// Keep score
 			var score = 0;
 
+			var gameLoop;
+
+			var seconds = 30;
+
+			var timer = function() {
+				setInterval(function(){
+					--seconds;
+					$('#seconds').html(seconds);
+					if (seconds == 0) {
+						clearInterval(seconds);
+					}
+				}, 1000);
+
+			}
+
 		$('#startScore').click(function() {
+			//change innerHTML to "Score"
+			$(this).html('Score:');
 			// Function to show the mole!
+			timer();
+
 			var show = function() {
 				// Fade out any moles
 				$('.mole').fadeOut();
@@ -84,16 +104,19 @@
 			}
 
 			// Click event listener
-			$('.mole').click(function() { 
+			$('.mole').click(function() {
 				// Increase score (and show it)
 				$('#score').html(++score);
 				// Hide the mole!
 				$(this).hide();
 			});
 
-			console.log('#score');
 			// Game loop (show every n milliseconds)
-			setInterval(show, 1500);
+			gameLoop = setInterval(show, 1500);
+
+			//set timer to 30 sec
+
+			//force game out of loop at end of timer
 		});
 		});
 	</script>
@@ -105,8 +128,8 @@
 
 		$('img').click(function () {
 			$(this).fadeOut();
-		
- 
+
+
 		$('img').fadeIn();
 
 		});
