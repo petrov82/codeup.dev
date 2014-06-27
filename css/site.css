@@ -2,25 +2,54 @@
     
   }
 
+  .rainbow {
+  background-image: -webkit-gradient( linear, left top, right top, 
+                    color-stop(0, #f22),
+                    color-stop(0.15, #f2f),
+                    color-stop(0.3, #22f),
+                    color-stop(0.45, #2ff),
+                    color-stop(0.6, #2f2),
+                    color-stop(0.75, #2f2),
+                    color-stop(0.9, #ff2),
+                    color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top,
+                    color-stop(0, #f22),
+                    color-stop(0.15, #f2f),
+                    color-stop(0.3, #22f),
+                    color-stop(0.45, #2ff),
+                    color-stop(0.6, #2f2),
+                    color-stop(0.75, #2f2),
+                    color-stop(0.9, #ff2),
+                    color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
   div {
-  height: 50px;
-  width: 50px;
-  padding: 10px;
-  border: dotted 1px #000;
-  font-weight: bold;
-  text-align: center;
-  color: #FFF;
-  background-color: #FFF;
-  margin-top: 50px;
-  margin-right: 50px;
-  position:relative;
-  float: left;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border: dotted 1px #000;
+    font-weight: bold;
+    text-align: center;
+    color: #FFF;
+    background-color: #FFF;
+    margin-top: 50px;
+    margin-right: 50px;
+    position:relative;
+    float: left;
   }
 
   #ribbon {
-  position: absolute;
-  top: 1px;
-  right: 1px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+  }
+
+  #irbox {
+    background-color: #FFF;
+    color: #CCC;
   }
 
   #redbox {
@@ -34,19 +63,29 @@
   #yellowbox {
     background-color: yellow;
     color: #CCC;
+    clear:left;
   }
 
   #greenbox {
     background-color: #0F0;
-    clear:left;
   }
 
   #bluebox {
     background-color: #00F;
   }
 
+  #indigobox {
+    background-color: indigo;
+    clear:left;
+  }
+
   #violetbox {
     background-color: violet;
+  }
+
+  #uvbox {
+    background-color: #000;
+    color: #CCC;
   }
 
   div>img {
