@@ -6,7 +6,7 @@ $primes = array();
 function isPrime($number) {
 	$prime = true;
 
-	for ($i = 2; $i < $number; $i++)
+	for ($i = 2; $i <= sqrt($number); $i++)
 	{
 		if ($number % $i == 0)
 		{
@@ -18,7 +18,7 @@ function isPrime($number) {
 	return $prime;
 }
 
-for ($factor = 1; $factor <= $chal; $factor++) { 
+for ($factor = 1; $factor <= $chal; $factor++) {
 	if ($chal % $factor == 0) {
 		if (isPrime($factor) == true) {
 			array_push($primes, $factor);
