@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Velocity Test</title>
+        <link rel="stylesheet" type="text/css" href="../css/velocitystyle.css">
+        <script type="text/javascript" src= "../js/jquery.js" ></script>
+        <script type="text/javascript" src= "../js/velocity.min.js" ></script>
+    </head>
+
+    <body>
+        
+        <p>
+            Refresh this page to re-run the demo.
+        </p>
+
+        <svg>
+            <rect id= "rect" width= "25" height= "25" x= "10%" y= "10%" fill= "gray" stroke= "rgba(80, 80, 80, 1)" stroke-width="0px" />
+        </svg>
+
+    </body>
+
+    <script type="text/javascript">
+
+        // $(document).ready(function() {
+
+            /* jquery.js */
+            /* jquery.velocity.js */
+
+            // Animate an SVG element with a mix of standard CSS properties and SVG-specific properties.
+            $("#rect")
+                .delay(500)
+                  .velocity({ x: "+=200", y: "25%" })
+                .velocity({ fillGreen: 255, strokeWidth: 2 })
+                  .velocity({ height: 50, width: 50 })
+                .velocity({ rotateZ: 90, scaleX: 0.5 })
+                .velocity("reverse", { delay: 250 });
+        // });
+
+    </script>
+</html>
