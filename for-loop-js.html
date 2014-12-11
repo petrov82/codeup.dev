@@ -6,11 +6,21 @@
 </head>
 <body>
 <script>
-var i = 100;
 
-for (; i > 0;) {
-    console.log(i);
-    i -= 5;
+for (var i = 0; i < 100; i++) {
+    if (i % 15 == 0) {
+        console.log("FizzBuzz");
+        document.write("<h1>FizzBuzz</h1>");
+    } else if (i % 5 == 0) {
+        console.log("Buzz");
+        document.write("<h2>Buzz</h2>");
+    } else if (i % 3 == 0) {
+        console.log("Fizz");
+        document.write("<h2>Fizz</h2>");
+    } else {
+        console.log(i);
+        document.write("<p>", i, "</p>");
+    };
 }
 
 </script>
