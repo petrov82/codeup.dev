@@ -1,24 +1,45 @@
 <?php
 
 
-$butts = $_SERVER['HTTP_USER_AGENT'];
-$gooch = strstr($butts, ';');
-$fanny = substr($gooch, 2, 21);
+$uagent = $_SERVER['HTTP_USER_AGENT'];
+$foo = '';
+$browser = '';
 
-// var_dump($butts);
-// echo "$butts";
+function check_browser()
+{
+    $uagent = $_SERVER['HTTP_USER_AGENT'];
+
+    if (strpos($uagent, 'MSIE') !== FALSE) {
+        return "Internet Explorer.";
+    } elseif (strpos($uagent, 'Firefox') !== FALSE) {
+        return "Firefox.";
+    } elseif ( (strpos($uagent, 'Chrome') !== FALSE) && (strpos($uagent, 'Safari') !== TRUE)) {
+        return "Chrome.";
+    } elseif (strpos($uagent, 'Opera') !== FALSE) {
+        return "Opera.";
+    } elseif ( (strpos($uagent, 'Safari') !== FALSE) && (strpos($uagent, 'Chrome') !== TRUE) ) {
+        return "Safari.";
+    } else {
+        return "some strange sort of magick.";
+    }
+};
+
+$browser = check_browser($uagent);
+var_dump($uagent);
+// echo "$uagent";
+
 ?>
 
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Box Model Exercise</title>
-    <link rel="stylesheet" href="../css/site.css">
+    <title>Check your Browser</title>
+    <link rel="stylesheet" href="">
 </head>
 
 <body>
-    <div id="greenbox" style="color: black; height: 100px; width: 100px;">
-            <? echo "You are running: $butts"; ?>
+    <div>
+            <? echo "You are running $browser"; ?>
     </div>
 </body>
